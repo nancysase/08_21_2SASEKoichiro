@@ -9,97 +9,101 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+class ViewController: UIViewController, AVAudioPlayerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
+
     @IBOutlet weak var situationLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var memoCollectionView: UICollectionView!
     
-    var audioPlayer = AVAudioPlayer()
-    var audioRecorder = AVAudioRecorder()
-    var isRecording :Bool = false
-    var isPlaying :Bool = false
+    var soundManager = MemoManager()
+    var soundPlayer = AVAudioPlayer()
+//    var audioRecorder = AVAudioRecorder()
+//    var isRecording :Bool = false
+//    var isPlaying :Bool = false
     
-    
+    let layout = UICollectionViewFlowLayout()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        memoCollectionView.delegate = self
+        memoCollectionView.dataSource = self
+        
+        let nib = UINib(nibName: "MemoCollectionViewCell", bundle: nil)
+        memoCollectionView.register(nib, forCellWithReuseIdentifier: "MemoCell")
+        
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        let cellSize = self.view.frame.width / 4
+        layout.itemSize = CGSize(width: cellSize, height: cellSize)
+        memoCollectionView.collectionViewLayout = layout
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(_:)))
+        longPressGesture.delegate = self
+        self.memoCollectionView.addGestureRecognizer(longPressGesture)
+
     }
+    
     @IBAction func record(){
-        if !isRecording {
-
-            let session = AVAudioSession.sharedInstance()
-            try! session.setCategory(AVAudioSession.Category.playAndRecord)
-            try! session.setActive(true)
-
-            let settings = [
-                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                AVSampleRateKey: 44100,
-                AVNumberOfChannelsKey: 2,
-                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-            ]
-
-            audioRecorder = try! AVAudioRecorder(url: getURL(), settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-
-            isRecording = true
-
+                
+        if !soundManager.isRecording {
             situationLabel.text = "録音中"
-            recordButton.setTitle("STOP", for: .normal)
+            recordButton.setTitle("停止", for: .normal)
             playButton.isEnabled = false
 
-        }else{
-
-            audioRecorder.stop()
-            isRecording = false
-
+        } else {
             situationLabel.text = "待機中"
-            recordButton.setTitle("RECORD", for: .normal)
+            recordButton.setTitle("録音", for: .normal)
             playButton.isEnabled = true
-
-        }
+        }        
+        soundManager.record()
+        memoCollectionView.reloadData()
     }
     
-    func getURL() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent("recording.m4a")
-        return url
-    }
+
     
     @IBAction func play(){
-        if !isPlaying {
-
-            audioPlayer = try! AVAudioPlayer(contentsOf: getURL())
-            audioPlayer.delegate = self
-            audioPlayer.play()
-
-            isPlaying = true
-
+        if !soundManager.isPlaying {
             situationLabel.text = "再生中"
-            playButton.setTitle("STOP", for: .normal)
+            playButton.setTitle("停止", for: .normal)
             recordButton.isEnabled = false
 
         }else{
-
-            audioPlayer.stop()
-            isPlaying = false
-
             situationLabel.text = "待機中"
-            playButton.setTitle("PLAY", for: .normal)
+            playButton.setTitle("再生", for: .normal)
             recordButton.isEnabled = true
-
         }
+        soundManager.play()
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return memoList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = memoCollectionView.dequeueReusableCell(withReuseIdentifier: "MemoCell", for: indexPath) as! MemoCollectionViewCell
+        cell.memoLabel.text = memoList[indexPath.item].timeStamp
+        return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let thisUrlPath = memoList[indexPath.item].url
+        soundPlayer = try! AVAudioPlayer(contentsOf: thisUrlPath)
+        soundPlayer.play()
+    }
+    
+    
+    @objc func longPress(_ sender: UILongPressGestureRecognizer){
+            if sender.state == .began {
+                print("LongPress began")
+            }
+            else if sender.state == .ended {
+             print("Long Pressed !")
+         }
+     }
 
-
+    
+    
 }
 

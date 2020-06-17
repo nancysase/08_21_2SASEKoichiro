@@ -13,8 +13,11 @@
 		B9509AB124960E59006AC8DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9509AAF24960E59006AC8DE /* Main.storyboard */; };
 		B9509AB324960E5A006AC8DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9509AB224960E5A006AC8DE /* Assets.xcassets */; };
 		B9509AB624960E5A006AC8DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9509AB424960E5A006AC8DE /* LaunchScreen.storyboard */; };
-		B9509AC324961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9509AC124961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.swift */; };
-		B9509AC424961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9509AC224961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.xib */; };
+		B99294EC24985FD30055CCC2 /* MemoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99294EA24985FD30055CCC2 /* MemoCollectionViewCell.swift */; };
+		B99294ED24985FD30055CCC2 /* MemoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99294EB24985FD30055CCC2 /* MemoCollectionViewCell.xib */; };
+		B99294EF249860F10055CCC2 /* MemoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99294EE249860F10055CCC2 /* MemoInfo.swift */; };
+		B99294F3249864F10055CCC2 /* MemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99294F2249864F10055CCC2 /* MemoManager.swift */; };
+		B99294F5249879090055CCC2 /* MemoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99294F4249879090055CCC2 /* MemoList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +29,11 @@
 		B9509AB224960E5A006AC8DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9509AB524960E5A006AC8DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9509AB724960E5A006AC8DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9509AC124961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMemoCollectionCellCollectionViewCell.swift; sourceTree = "<group>"; };
-		B9509AC224961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMemoCollectionCellCollectionViewCell.xib; sourceTree = "<group>"; };
+		B99294EA24985FD30055CCC2 /* MemoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCollectionViewCell.swift; sourceTree = "<group>"; };
+		B99294EB24985FD30055CCC2 /* MemoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoCollectionViewCell.xib; sourceTree = "<group>"; };
+		B99294EE249860F10055CCC2 /* MemoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoInfo.swift; sourceTree = "<group>"; };
+		B99294F2249864F10055CCC2 /* MemoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoManager.swift; sourceTree = "<group>"; };
+		B99294F4249879090055CCC2 /* MemoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +70,14 @@
 				B9509AAB24960E59006AC8DE /* SceneDelegate.swift */,
 				B9509AAD24960E59006AC8DE /* ViewController.swift */,
 				B9509AAF24960E59006AC8DE /* Main.storyboard */,
+				B99294F2249864F10055CCC2 /* MemoManager.swift */,
+				B99294F4249879090055CCC2 /* MemoList.swift */,
+				B99294EE249860F10055CCC2 /* MemoInfo.swift */,
 				B9509AB224960E5A006AC8DE /* Assets.xcassets */,
 				B9509AB424960E5A006AC8DE /* LaunchScreen.storyboard */,
 				B9509AB724960E5A006AC8DE /* Info.plist */,
-				B9509AC124961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.swift */,
-				B9509AC224961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.xib */,
+				B99294EA24985FD30055CCC2 /* MemoCollectionViewCell.swift */,
+				B99294EB24985FD30055CCC2 /* MemoCollectionViewCell.xib */,
 			);
 			path = VoiceMemoApp2;
 			sourceTree = "<group>";
@@ -132,7 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9509AB624960E5A006AC8DE /* LaunchScreen.storyboard in Resources */,
-				B9509AC424961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.xib in Resources */,
+				B99294ED24985FD30055CCC2 /* MemoCollectionViewCell.xib in Resources */,
 				B9509AB324960E5A006AC8DE /* Assets.xcassets in Resources */,
 				B9509AB124960E59006AC8DE /* Main.storyboard in Resources */,
 			);
@@ -145,10 +154,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B99294EC24985FD30055CCC2 /* MemoCollectionViewCell.swift in Sources */,
 				B9509AAE24960E59006AC8DE /* ViewController.swift in Sources */,
-				B9509AC324961D33006AC8DE /* VoiceMemoCollectionCellCollectionViewCell.swift in Sources */,
 				B9509AAA24960E59006AC8DE /* AppDelegate.swift in Sources */,
 				B9509AAC24960E59006AC8DE /* SceneDelegate.swift in Sources */,
+				B99294F3249864F10055CCC2 /* MemoManager.swift in Sources */,
+				B99294EF249860F10055CCC2 /* MemoInfo.swift in Sources */,
+				B99294F5249879090055CCC2 /* MemoList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
