@@ -14,13 +14,13 @@ class MemoCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupMemoTextView()
     }
     
     private func setupMemoTextView() {
-        memoLabel.layer.borderWidth = 1
-        memoLabel.layer.borderColor = UIColor.lightGray.cgColor
         memoLabel.layer.cornerRadius = 5
+        memoLabel.layer.backgroundColor = UIColor.systemGray5.cgColor
+        memoLabel.layer.opacity = 0.5
     }
 
 }

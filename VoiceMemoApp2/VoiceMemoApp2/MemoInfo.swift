@@ -8,12 +8,14 @@
 
 import Foundation
 
-class MemoInfo {
+class MemoInfo: Codable {
     let timeStamp: String
     let url: URL
-    init(timeStamp: String, url: URL) {
+    let priority: Int
+    init(timeStamp: String, url: URL, priority: Int) {
         self.timeStamp = timeStamp
         self.url = url
+        self.priority = priority
     }
     
 }

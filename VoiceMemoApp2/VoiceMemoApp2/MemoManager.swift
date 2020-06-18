@@ -15,24 +15,18 @@ class MemoManager {
     var audioRecorder = AVAudioRecorder()
     var isRecording :Bool = false
     var isPlaying :Bool = false
-//    var date = Date()
     var now: String = ""
+
     
     let formatter = DateFormatter()
-    
-//    func time(){
-//        formatter.timeStyle = .long
-//        formatter.dateStyle = .long
-//        formatter.locale = Locale(identifier: "ja_JP")
-//        now = formatter.string(from: date)
-//    }
-    
+       
     func record(){
         if !isRecording {
             let date = Date()
-            formatter.timeStyle = .long
-            formatter.dateStyle = .long
+//            formatter.timeStyle = .medium
+//            formatter.dateStyle = .short
             formatter.locale = Locale(identifier: "ja_JP")
+            formatter.dateFormat = "yyyyMMddHHmmss" //これで単純な文字列化
             now = formatter.string(from: date)
             
             let session = AVAudioSession.sharedInstance()
@@ -46,9 +40,8 @@ class MemoManager {
             ]
             let urlPath = getURL()
             audioRecorder = try! AVAudioRecorder(url: urlPath, settings: settings)
-            memoList.append(MemoInfo(timeStamp: now, url: urlPath))
+            memoList.append(MemoInfo(timeStamp: now, url: urlPath, priority: priority))
             audioRecorder.record()
-            
             isRecording = true
             
         }else{
@@ -60,7 +53,7 @@ class MemoManager {
     func getURL() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let docsDirect = paths[0]
-        let url = docsDirect.appendingPathComponent("\(now).m4a")
+        let url = docsDirect.appendingPathComponent("\(now).m4a") //名前に変な文字列入れるとJsondecodeした時にエラー
         return url
     }
     

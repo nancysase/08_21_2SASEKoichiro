@@ -16,13 +16,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwM-o0-DRd">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwM-o0-DRd">
                         <rect key="frame" x="2" y="2" width="46" height="46"/>
-                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="vwM-o0-DRd" secondAttribute="height" multiplier="1:1" id="xmH-2o-fww"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
