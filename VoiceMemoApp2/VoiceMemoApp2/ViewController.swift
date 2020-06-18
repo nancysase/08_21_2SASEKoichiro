@@ -8,10 +8,12 @@
 
 import UIKit
 import AVFoundation
+import LTMorphingLabel
 
-class ViewController: UIViewController, AVAudioPlayerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate, LTMorphingLabelDelegate {
 
-    @IBOutlet weak var situationLabel: UILabel!
+
+    @IBOutlet weak var situationLabel: LTMorphingLabel!
     @IBOutlet weak var emergencyButton: UIButton!
     @IBOutlet weak var betterButton: UIButton!
     @IBOutlet weak var ideaButton: UIButton!
@@ -20,10 +22,14 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UICollectionViewD
     
     var soundManager = MemoManager() //自作のクラスを実体化
     var soundPlayer = AVAudioPlayer() //AVAudioPlayerのクラスを実体化
+    
+    var morphingEffect = LTMorphingLabel()
+    
     let layout = UICollectionViewFlowLayout() //CollectionViewに含まれているFlowLayoutメソッドを実体化
         
     override func viewDidLoad() {
         super.viewDidLoad()
+                
         emergencyButton.titleLabel?.numberOfLines = 2 //ボタンの2行表示
         emergencyButton.titleLabel?.textAlignment = .center //ボタンのテキストセンタリング
         emergencyButton.layer.cornerRadius = 5
@@ -52,7 +58,12 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UICollectionViewD
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(_:))) //ロングプレスの実体化
         longPressGesture.delegate = self
         self.memoCollectionView.addGestureRecognizer(longPressGesture) //ロングプレスをコレクションビューに設定
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        situationLabel.morphingEffect = .burn
+        situationLabel.text = "ボイスメモ" //ライブラリ発動のため？
+        
     }
     
     @IBAction func emergencyRecord(){
@@ -119,16 +130,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memoList.count
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let displayTime: String = sortedMemoList[indexPath.item].timeStamp //配列から表示する文字列を取得
-        let year = displayTime[displayTime.index(displayTime.startIndex, offsetBy: 0)..<displayTime.index(displayTime.startIndex, offsetBy: 4)] //文字列から指定した文字のみを抽出
-        let month = displayTime[displayTime.index(displayTime.startIndex, offsetBy: 4)..<displayTime.index(displayTime.startIndex, offsetBy: 6)]
-        let day = displayTime[displayTime.index(displayTime.startIndex, offsetBy: 6)..<displayTime.index(displayTime.startIndex, offsetBy: 8)]
-        let hour = displayTime[displayTime.index(displayTime.startIndex, offsetBy: 8)..<displayTime.index(displayTime.startIndex, offsetBy: 10)]
-        let minute = displayTime[displayTime.index(displayTime.startIndex, offsetBy: 10)..<displayTime.index(displayTime.startIndex, offsetBy: 12)]
-        let second = displayTime[displayTime.index(displayTime.startIndex, offsetBy: 12)..<displayTime.index(displayTime.startIndex, offsetBy: 14)]
-        let displayText = "\(year)年\n\(month)月\(day)日\n\(hour)時\(minute)分\(second)秒"
+        displayTime = sortedMemoList[indexPath.item].timeStamp
+        time() //セルに挿入するために、数字の羅列を日時表記に変換するクラス
         let cell = memoCollectionView.dequeueReusableCell(withReuseIdentifier: "MemoCell", for: indexPath) as! MemoCollectionViewCell //コレクションビューに表示するセルの指定
         cell.memoLabel.text = displayText //セルに文字列を挿入
          if sortedMemoList[indexPath.item].priority == 0{

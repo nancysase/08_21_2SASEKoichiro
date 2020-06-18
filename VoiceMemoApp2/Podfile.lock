@@ -1,0 +1,16 @@
+PODS:
+  - LTMorphingLabel (0.8.0)
+
+DEPENDENCIES:
+  - LTMorphingLabel
+
+SPEC REPOS:
+  trunk:
+    - LTMorphingLabel
+
+SPEC CHECKSUMS:
+  LTMorphingLabel: 1ada1cb5c046ae4ce5c66b428cf2e05e227e8e4f
+
+PODFILE CHECKSUM: 08a4cd91ab2253978c426209973f7b407b7b4485
+
+COCOAPODS: 1.9.3

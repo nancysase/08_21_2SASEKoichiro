@@ -20,8 +20,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ボイスメモ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kb7-bI-RGH">
-                                <rect key="frame" x="131" y="94" width="152" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kb7-bI-RGH" customClass="LTMorphingLabel" customModule="LTMorphingLabel">
+                                <rect key="frame" x="127" y="94" width="160" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="HGQ-Pi-5nC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -120,7 +123,7 @@
                         <outlet property="emergencyButton" destination="bBz-hS-iHD" id="EWP-s5-KXP"/>
                         <outlet property="ideaButton" destination="Bbj-Sp-xud" id="b3Q-B3-iKd"/>
                         <outlet property="memoCollectionView" destination="y0j-Vv-5hr" id="yqM-TX-TGK"/>
-                        <outlet property="situationLabel" destination="kb7-bI-RGH" id="cSF-tp-rZ6"/>
+                        <outlet property="situationLabel" destination="kb7-bI-RGH" id="1UL-IS-cvQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

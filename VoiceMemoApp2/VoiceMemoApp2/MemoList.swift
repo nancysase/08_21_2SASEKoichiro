@@ -16,4 +16,4 @@ var sortedMemoList:[MemoInfo] = [
 
 var priority = Int()
 
-let sectionName:Array = ["急ぎand/or重要", "そのうちand/orやるべき", "備忘and/orアイデア"]
+

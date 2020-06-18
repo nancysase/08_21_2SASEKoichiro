@@ -31,6 +31,7 @@ class MemoManager {
             
             let session = AVAudioSession.sharedInstance()
             try! session.setCategory(AVAudioSession.Category.playAndRecord)
+            try! session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
             try! session.setActive(true)
             let settings = [
                 AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
